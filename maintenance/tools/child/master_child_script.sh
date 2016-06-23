@@ -58,7 +58,7 @@ echo $DATE 'RUN_UPDATES calculated to be' $RUN_UPDATES  >> $ROOT_DIR/maintenance
 ## MIGHT AS WELL ENSURE THAT THE RUN_LOG EXISTS.
 ## run_log is a changeset that records processed md5s.  If a file's checksum is found in the run_log, the file won't be re-applied to production.		     	
 
-if [! -f $DIR/run_log ]; then
+if [ ! -f $DIR/run_log ]; then
  echo 'HERE WE GO' >> $DIR/run_log
  chmod 600 $DIR/run_log
  echo $DATE 'CREATED run_log.' >> $ROOT_DIR/maintenance.log 
