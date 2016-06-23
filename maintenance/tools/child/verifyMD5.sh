@@ -34,11 +34,12 @@ fi
 
 #if the input file has changed, give it an update
 if [ -f "$INPUTFILE" ]; then
-    STATUS=`exec cd "$FOLDER" && md5sum --check < "$INPUTFILEMD5" | grep -o FAILED`
+    cd $FOLDER
+    STATUS=`exec md5sum --check < "$INPUTFILEMD5" | grep -o FAILED`
     if [ $STATUS ]; then
         echo 'FAILED'
     fi
-    STATUS=`exec cd "$FOLDER" && md5sum --check < "$INPUTFILEMD5" | grep -o OK`
+    STATUS=`exec md5sum --check < "$INPUTFILEMD5" | grep -o OK`
     if [ $STATUS ]; then
         echo 'OK'
     fi
