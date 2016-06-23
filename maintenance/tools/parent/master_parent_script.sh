@@ -9,6 +9,14 @@ SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 source $DIR/global_vars.sh
+
+## since this script does chmods and chowns, double check that all variables have been set to avoid potential disaster!
+[ -z "$DATE" ] && echo "Warning: unset DATE global var, aborting" && exit 1
+[ -z "$USER" ] && echo "Warning: unset USER global var, aborting" && exit 1
+[ -z "$USER_HOME_DIR" ] && echo "Warning: unset USER_HOME_DIR global var, aborting" && exit 1
+[ -z "$ROOT_DIR" ] && echo "Warning: unset ROOT_DIR global var, aborting" && exit 1
+[ -z "$SERVER_LIST" ] && echo "Warning: unset SERVER_LIST global var, aborting" && exit 1
+
 echo ' '  >> $ROOT_DIR/maintenance.log
 echo $DATE ' BEGINNING MASTER PARENT SCRIPT '  >> $ROOT_DIR/maintenance.log
 echo $DATE 'Running compareAndCreateMD5 on all drop folders'  >> $ROOT_DIR/maintenance.log

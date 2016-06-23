@@ -16,9 +16,18 @@ while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 source $DIR/global_vars_child.sh
 
+## since this script does chmods and chowns, double check that all variables have been set to avoid potential disaster!
+[ -z "$DATE" ] && echo "Warning: unset DATE global var, aborting" && exit 1
+[ -z "$USER" ] && echo "Warning: unset USER global var, aborting" && exit 1
+[ -z "$USER_HOME_DIR" ] && echo "Warning: unset USER_HOME_DIR global var, aborting" && exit 1
+[ -z "$ROOT_DIR" ] && echo "Warning: unset ROOT_DIR global var, aborting" && exit 1
+[ -z "$TOMCAT_WEBAPP_DIR" ] && echo "Warning: unset TOMCAT_WEBAPP_DIR global var, aborting" && exit 1
+[ -z "$OPENMRS_MODULES_DIR" ] && echo "Warning: unset OPENMRS_MODULES_DIR global var, aborting" && exit 1
+[ -z "$OPENMRS_RUNTIME_PROPERTIES_FILE" ] && echo "Warning: unset OPENMRS_RUNTIME_PROPERTIES_FILE global var, aborting" && exit 1
+[ -z "$OPENMRS_DATABASE_NAME" ] && echo "Warning: unset OPENMRS_DATABASE_NAME global var, aborting" && exit 1
+
 echo ' '  >> $ROOT_DIR/maintenance.log
 echo $DATE ' BEGINNING MASTER CHILD SCRIPT '  >> $ROOT_DIR/maintenance.log
-
 
 ########################################################
 #### FIRST PASS, LETS LOOK FOR NON-MATCHING MD5 FILES ##
