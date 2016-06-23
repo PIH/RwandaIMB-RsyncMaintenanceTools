@@ -19,3 +19,5 @@ OPENMRS_RUNTIME_PROPERTIES_FILE=/usr/share/tomcat7/.OpenMRS/openmrs-runtime.prop
 
 OPENMRS_DATABASE_NAME=openmrs
 
+OPENMRS_WEBAPP_NAME=openmrs
+

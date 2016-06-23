@@ -25,6 +25,7 @@ source $DIR/global_vars_child.sh
 [ -z "$OPENMRS_MODULES_DIR" ] && echo "Warning: unset OPENMRS_MODULES_DIR global var, aborting" && exit 1
 [ -z "$OPENMRS_RUNTIME_PROPERTIES_FILE" ] && echo "Warning: unset OPENMRS_RUNTIME_PROPERTIES_FILE global var, aborting" && exit 1
 [ -z "$OPENMRS_DATABASE_NAME" ] && echo "Warning: unset OPENMRS_DATABASE_NAME global var, aborting" && exit 1
+[ -z "$OPENMRS_WEBAPP_NAME" ] && echo "Warning: unset OPENMRS_WEBAPP_NAME global var, aborting" && exit 1
 
 echo ' '  >> $ROOT_DIR/maintenance.log
 echo $DATE ' BEGINNING MASTER CHILD SCRIPT '  >> $ROOT_DIR/maintenance.log
@@ -89,9 +90,9 @@ if [ $RUN_UPDATES == true ]; then
 		       `exec sudo chmod 777 $TOMCAT_WEBAPP_DIR/*`
 		       `exec sudo chown $USER $TOMCAT_WEBAPP_DIR/*.war`
 
+               `exec rm -r "$TOMCAT_WEBAPP_DIR/$OPENMRS_WEBAPP_NAME"  > /dev/null`
 		       `exec sudo cp -f "$FILE" "$TOMCAT_WEBAPP_DIR"`
-		       ##TODO:  kill openmrs folder in webapps (see global_vars file for database name config variable) -- you might need to add 'rm' through visudo?
-     
+
 		       `exec sudo chmod 644 $TOMCAT_WEBAPP_DIR/*.war`
 		       `exec sudo chmod 755 $TOMCAT_WEBAPP_DIR`
 		       echo $MD5 >> $DIR/run_log
