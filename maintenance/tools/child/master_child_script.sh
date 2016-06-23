@@ -44,7 +44,7 @@ for FOLDER in "${FOLDERS[@]}"; do
 	
 	if [ "$(ls -A $ROOT_DIR/$FOLDER)" ]; then
 		for FILE in $ROOT_DIR/$FOLDER/* ; do
-		   STATUS=`exec $DIR/verifyMD5.sh "$FILE $ROOT_DIR/$FOLDER"`
+		   STATUS=`exec $DIR/verifyMD5.sh "$FILE" "$ROOT_DIR/$FOLDER"`
 		   if [ "$STATUS" == "FAILED" ]; then
 		      RUN_UPDATES=false
 		   fi
