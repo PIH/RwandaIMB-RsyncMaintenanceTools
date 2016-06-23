@@ -7,14 +7,16 @@ while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 source $DIR/global_vars_child.sh
 
+INPUTFILE=$1
+FOLDER=$2
 
 #make sure the input file is valid
-INPUTFILE=$1
 if [ ! -f "$INPUTFILE" ]; then
      echo $DATE 'File' $INPUTFILE 'does not exist. in routine verifyMD5.' >> $ROOT_DIR/compareMD5.error
      echo 'FAILED'
      exit 1
 fi
+
 
 #skip md5 files
 if [[ "$INPUTFILE" == *.md5 ]]; then
@@ -32,11 +34,11 @@ fi
 
 #if the input file has changed, give it an update
 if [ -f "$INPUTFILE" ]; then
-    STATUS=`exec md5sum --check < "$INPUTFILEMD5" | grep -o FAILED`
+    STATUS=`exec cd "$FOLDER" && md5sum --check < "$INPUTFILEMD5" | grep -o FAILED`
     if [ $STATUS ]; then
         echo 'FAILED'
     fi
-    STATUS=`exec md5sum --check < "$INPUTFILEMD5" | grep -o OK`
+    STATUS=`exec cd "$FOLDER" && md5sum --check < "$INPUTFILEMD5" | grep -o OK`
     if [ $STATUS ]; then
         echo 'OK'
     fi
