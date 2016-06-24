@@ -213,7 +213,7 @@ if [ $RUN_UPDATES == true ]; then
          fi
         done
   fi
-
+    echo $DATE ' Restarting Tomcat'  >> $ROOT_DIR/maintenance.log
     `exec sudo service "$TOMCAT_SERVICE" restart`
   ## NOTE:  other_files require no action
 
