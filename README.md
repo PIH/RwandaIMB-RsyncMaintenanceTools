@@ -14,3 +14,13 @@ To configure on parent server, reate openmrs_maintenance_user, then:
 
 TODO: have Ansible actually create the openmrs_maintenance_rwanda user and the openmrs_modules, openmrs_war, other_files, and trusted_sql directories on the the parent (right now it sets up the children, but you need to configure the parent manually)
 
+RUNNING THE PLAYBOOK.
+
+A few steps to do before running the playbook
+* edit hosts files and add in the child servers IPs.
+* copy .ssh/id_rsa.pub content from parent server to roles/files/authorized_keys
+* edit roles/defaults/main.yml and insert the correct password (hashed password)
+
+How to run the playbook.
+* cd playbook
+* ./install.sh
