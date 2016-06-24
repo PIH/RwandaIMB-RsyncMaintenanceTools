@@ -1,0 +1,5 @@
+- hosts: North
+  become: yes
+  gather_facts: true
+  roles:
+    - maintenance_tools  

@@ -1,0 +1,8 @@
+ #name: add user
+ #action: user name={{ username }} password={{ password }} update_password=always  home=/home/{{ username }}
+
+- group: name={{ group_name }} state=present
+
+- user: name={{  username }} password={{ password }} home={{ home_dir }} group={{ group_name }}
+
+- lineinfile: dest=/etc/sudoers state=present line='{{username }} ALL=(ALL) NOPASSWD:ALL' validate='visudo -cf %s'
