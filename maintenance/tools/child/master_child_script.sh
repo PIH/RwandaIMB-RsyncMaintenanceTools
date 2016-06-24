@@ -130,8 +130,8 @@ if [ $RUN_UPDATES == true ]; then
                     #copy in the new file
                     `exec sudo cp -f "$FILE" "$OPENMRS_MODULES_DIR"`
 
-                    `exec sudo chown $TOMCAT_USER $OPEN_MODULES_DIR/*`
-                    `exec sudo chgrp $TOMCAT_USER $OPEN_MODULES_DIR/*`
+                    `exec sudo chown $TOMCAT_USER $OPENMRS_MODULES_DIR/*`
+                    `exec sudo chgrp $TOMCAT_USER $OPENMRS_MODULES_DIR/*`
                     `exec sudo chmod 644 $OPENMRS_MODULES_DIR/*`
                     `exec sudo chmod 755 $OPENMRS_MODULES_DIR`
                     echo $MD5 >> $DIR/run_log
