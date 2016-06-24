@@ -14,6 +14,8 @@ TOMCAT_WEBAPP_DIR=/var/lib/tomcat7/webapps
 
 TOMCAT_USER=tomcat7
 
+TOMCAT_SERVER=tomcat7
+
 #usually /home/openmrs/.OpenMRS/modules
 OPENMRS_MODULES_DIR=/usr/share/tomcat7/.OpenMRS/modules
 

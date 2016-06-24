@@ -23,6 +23,7 @@ source $DIR/global_vars_child.sh
 [ -z "$ROOT_DIR" ] && echo "Warning: unset ROOT_DIR global var, aborting" && exit 1
 [ -z "$TOMCAT_WEBAPP_DIR" ] && echo "Warning: unset TOMCAT_WEBAPP_DIR global var, aborting" && exit 1
 [ -z "$TOMCAT_USER" ] && echo "Warning: unset TOMCAT_USER global var, aborting" && exit 1
+[ -z "$TOMCAT_SERVER" ] && echo "Warning: unset TOMCAT_SERVER global var, aborting" && exit 1
 [ -z "$OPENMRS_MODULES_DIR" ] && echo "Warning: unset OPENMRS_MODULES_DIR global var, aborting" && exit 1
 [ -z "$OPENMRS_RUNTIME_PROPERTIES_FILE" ] && echo "Warning: unset OPENMRS_RUNTIME_PROPERTIES_FILE global var, aborting" && exit 1
 [ -z "$OPENMRS_DATABASE_NAME" ] && echo "Warning: unset OPENMRS_DATABASE_NAME global var, aborting" && exit 1
@@ -213,6 +214,8 @@ if [ $RUN_UPDATES == true ]; then
         done
   fi
 
+    echo 'RESTARTING TOMCAT' >> $ROOT_DIR/maintenance.log
+    `exec sudo service "$TOMCAT_SERVICE" restart`
   ## NOTE:  other_files require no action
 
 fi
