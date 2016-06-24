@@ -1,0 +1,4 @@
+username: openmrs_maintenance_rwanda
+password: put hashed password here
+home_dir: /home/openmrs_maintenance_rwanda
+group_name: openmrs_maintenance_rwanda

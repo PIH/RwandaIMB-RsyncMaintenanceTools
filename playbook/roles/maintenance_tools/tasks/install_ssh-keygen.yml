@@ -1,0 +1,8 @@
+- name: make .ssh file
+  command: mkdir -p {{ home_dir }}/.ssh
+
+- copy: src=../files/authorized_keys dest={{ home_dir }}/.ssh owner={{ username }} 
+
+ 
+  
+
