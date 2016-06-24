@@ -214,7 +214,7 @@ if [ $RUN_UPDATES == true ]; then
         done
   fi
 
-    `exec sudo service "$TOMCAT_SERVICE" restart`  >> $ROOT_DIR/maintenance.log
+    `exec sudo service "$TOMCAT_SERVICE" restart`  &> $ROOT_DIR/maintenance.log
   ## NOTE:  other_files require no action
 
 fi
