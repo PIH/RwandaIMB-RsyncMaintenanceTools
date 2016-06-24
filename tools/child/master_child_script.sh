@@ -150,14 +150,14 @@ if [ $RUN_UPDATES == true ]; then
        if [ "$MODULE_FILE_ROOT" ]; then
            #FIND A MATCH IN THE DROP FOLDER:
            if [ "$(ls -A $ROOT_DIR/openmrs_modules/* | grep "/$MODULE_FILE_ROOT-")" ]; then
-           	echo $DATE 'drop folder file found for ' $MODULE_FILE_ROOT >> $ROOT_DIR/maintenance.log
+           	echo $DATE $MODULE_FILE_ROOT 'found in staging folder' >> $ROOT_DIR/maintenance.log
            else
                `exec sudo chmod 777 $OPENMRS_MODULES_DIR`
                `exec sudo chmod 777 $OPENMRS_MODULES_DIR/*`
                `exec rm "$FILE"  > /dev/null`
                `exec sudo chmod 644 $OPENMRS_MODULES_DIR/*`
                `exec sudo chmod 755 $OPENMRS_MODULES_DIR`
-               echo $DATE 'NO DROP FOLDER FILE FOUND FOR ' $MODULE_FILE_ROOT'.  REMOVING OMOD FROM PRODUCTION.'>> $ROOT_DIR/maintenance.log
+               echo $DATE $MODULE_FILE_ROOT 'not found in staging folder.  REMOVING OMOD FROM PRODUCTION.'>> $ROOT_DIR/maintenance.log
            fi
        fi
     fi
