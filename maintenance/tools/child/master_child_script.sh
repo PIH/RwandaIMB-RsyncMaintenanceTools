@@ -22,6 +22,7 @@ source $DIR/global_vars_child.sh
 [ -z "$USER_HOME_DIR" ] && echo "Warning: unset USER_HOME_DIR global var, aborting" && exit 1
 [ -z "$ROOT_DIR" ] && echo "Warning: unset ROOT_DIR global var, aborting" && exit 1
 [ -z "$TOMCAT_WEBAPP_DIR" ] && echo "Warning: unset TOMCAT_WEBAPP_DIR global var, aborting" && exit 1
+[ -z "$TOMCAT_USER" ] && echo "Warning: unset TOMCAT_USER global var, aborting" && exit 1
 [ -z "$OPENMRS_MODULES_DIR" ] && echo "Warning: unset OPENMRS_MODULES_DIR global var, aborting" && exit 1
 [ -z "$OPENMRS_RUNTIME_PROPERTIES_FILE" ] && echo "Warning: unset OPENMRS_RUNTIME_PROPERTIES_FILE global var, aborting" && exit 1
 [ -z "$OPENMRS_DATABASE_NAME" ] && echo "Warning: unset OPENMRS_DATABASE_NAME global var, aborting" && exit 1
@@ -93,6 +94,8 @@ if [ $RUN_UPDATES == true ]; then
                `exec rm -r "$TOMCAT_WEBAPP_DIR/$OPENMRS_WEBAPP_NAME"  > /dev/null`
 		       `exec sudo cp -f "$FILE" "$TOMCAT_WEBAPP_DIR"`
 
+               `exec sudo chown $TOMCAT_USER $TOMCAT_WEBAPP_DIR/*`
+               `exec sudo chgrp $TOMCAT_USER $TOMCAT_WEBAPP_DIR/*`
 		       `exec sudo chmod 644 $TOMCAT_WEBAPP_DIR/*.war`
 		       `exec sudo chmod 755 $TOMCAT_WEBAPP_DIR`
 		       echo $MD5 >> $DIR/run_log
@@ -126,7 +129,9 @@ if [ $RUN_UPDATES == true ]; then
                     `exec rm "$OPENMRS_MODULES_DIR/$FILE_ROOT-"*  > /dev/null`
                     #copy in the new file
                     `exec sudo cp -f "$FILE" "$OPENMRS_MODULES_DIR"`
-                    
+
+                    `exec sudo chown $TOMCAT_USER $OPEN_MODULES_DIR/*`
+                    `exec sudo chgrp $TOMCAT_USER $OPEN_MODULES_DIR/*`
                     `exec sudo chmod 644 $OPENMRS_MODULES_DIR/*`
                     `exec sudo chmod 755 $OPENMRS_MODULES_DIR`
                     echo $MD5 >> $DIR/run_log

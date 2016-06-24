@@ -12,6 +12,8 @@ ROOT_DIR=$USER_HOME_DIR/maintenance
 #usually /var/lib/tomcat6/webapps
 TOMCAT_WEBAPP_DIR=/var/lib/tomcat7/webapps
 
+TOMCAT_USER=tomcat7
+
 #usually /home/openmrs/.OpenMRS/modules
 OPENMRS_MODULES_DIR=/usr/share/tomcat7/.OpenMRS/modules
 
