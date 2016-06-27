@@ -5,7 +5,7 @@ Written by Dave Thomas (Partners In Health)
 To configure on parent server, reate openmrs_maintenance_user, then:
 
 * cd /home/openmrs_maintenance_rwanda
-* git https://github.com/PIH/RwandaIMB-RsyncMaintenanceTools.git maintenance
+* git clone https://github.com/PIH/RwandaIMB-RsyncMaintenanceTools.git maintenance
 * cd maintenance
 * mkdir openmrs_modules
 * mkdir openmrs_war
