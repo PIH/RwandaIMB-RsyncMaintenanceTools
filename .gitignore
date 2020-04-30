@@ -3,3 +3,4 @@ openmrs_modules/
 other_files/
 trusted_sql/
 maintenance.log
+*.iml
